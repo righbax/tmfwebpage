@@ -84,12 +84,12 @@ export default async function ShowsPage() {
       <header className="shows-nav">
         <a className="nav-mark" href="/" aria-label="Thursday Marks Fall home"><Image src="/TMF%20logo.PNG" alt="TMF" width={42} height={18} /><span>®</span></a>
         <nav aria-label="Page navigation"><a href="/album">Album</a><a href="/contact">Contact</a><a href="/merch">Merch</a></nav>
-        <a href="/">Home ↗</a>
+        <a href="/">Home <span className="ui-arrow" aria-hidden="true" /></a>
       </header>
       <section className="shows-page-content" aria-labelledby="shows-page-title">
         <h1 id="shows-page-title"><i>LIVE DATES</i></h1>
         <div className="shows-page-list">
-          {shows.map((show, index) => show.ticketUrl ? <a className="show-row" href={show.ticketUrl} target="_blank" rel="noopener noreferrer" key={`${show.date}-${show.city}-${show.venue}-${index}`}><time>{show.date}</time><strong>{show.city}</strong><span>{show.venue}</span><b>↗</b></a> : <div className="show-row" key={`${show.date}-${show.city}-${show.venue}-${index}`}><time>{show.date}</time><strong>{show.city}</strong><span>{show.venue}</span><b>↗</b></div>)}
+          {shows.map((show, index) => show.ticketUrl ? <a className="show-row" href={show.ticketUrl} target="_blank" rel="noopener noreferrer" key={`${show.date}-${show.city}-${show.venue}-${index}`}><time>{show.date}</time><strong>{show.city}</strong><span>{show.venue}</span><b className="ui-arrow" aria-hidden="true" /></a> : <div className="show-row" key={`${show.date}-${show.city}-${show.venue}-${index}`}><time>{show.date}</time><strong>{show.city}</strong><span>{show.venue}</span><b className="ui-arrow" aria-hidden="true" /></div>)}
         </div>
       </section>
     </main>

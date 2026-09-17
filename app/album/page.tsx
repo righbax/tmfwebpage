@@ -42,7 +42,7 @@ export default function AlbumPage() {
       <header className="album-nav">
         <a className="nav-mark" href="/" aria-label="Thursday Marks Fall home"><Image src="/TMF%20logo.PNG" alt="TMF" width={42} height={18} /><span>®</span></a>
         <nav aria-label="Page navigation"><a href="/shows">Shows</a><a href="/contact">Contact</a><a href="/merch">Merch</a></nav>
-        <a href="/">Home ↗</a>
+        <a href="/">Home <span className="ui-arrow" aria-hidden="true" /></a>
       </header>
       <div className="album-releases">
         <section className="album-layout" aria-labelledby="album-title">
@@ -54,7 +54,7 @@ export default function AlbumPage() {
             <ol className="album-track-list">
               {releasedTracks.map((track, index) => <li id={track.id} key={track.id}><span>0{index + 1}</span><strong>{track.title}</strong><time>{track.runtime}</time></li>)}
             </ol>
-            <div className="stream-links"><a href="https://open.spotify.com/artist/2TwbJ8YwFBLnJGAxhtAiN6?si=zAfG40AkRWuxVMNZjYIkJw" target="_blank" rel="noopener noreferrer">Spotify ↗</a><a href="https://www.google.com/url?sa=t&amp;source=web&amp;rct=j&amp;opi=89978449&amp;url=https://music.apple.com/us/artist/thursday-marks-fall/1667062244&amp;ved=2ahUKEwjQp8-Q3PGWAxUxkysGHV-kHoYQFnoECBkQAQ&amp;usg=AOvVaw3ECjYeBUT6VjP5x7vxmx20" target="_blank" rel="noopener noreferrer">Apple Music ↗</a><a href="https://thursdaymarksfall.bandcamp.com/album/take-me-back-to-the-beginning-2" target="_blank" rel="noopener noreferrer">Bandcamp ↗</a></div>
+            <div className="stream-links"><a href="https://open.spotify.com/artist/2TwbJ8YwFBLnJGAxhtAiN6?si=zAfG40AkRWuxVMNZjYIkJw" target="_blank" rel="noopener noreferrer">Spotify <span className="ui-arrow" aria-hidden="true" /></a><a href="https://www.google.com/url?sa=t&amp;source=web&amp;rct=j&amp;opi=89978449&amp;url=https://music.apple.com/us/artist/thursday-marks-fall/1667062244&amp;ved=2ahUKEwjQp8-Q3PGWAxUxkysGHV-kHoYQFnoECBkQAQ&amp;usg=AOvVaw3ECjYeBUT6VjP5x7vxmx20" target="_blank" rel="noopener noreferrer">Apple Music <span className="ui-arrow" aria-hidden="true" /></a><a href="https://thursdaymarksfall.bandcamp.com/album/take-me-back-to-the-beginning-2" target="_blank" rel="noopener noreferrer">Bandcamp <span className="ui-arrow" aria-hidden="true" /></a></div>
           </div>
         </section>
         <section className="album-layout" aria-labelledby="mystery-album-title">
