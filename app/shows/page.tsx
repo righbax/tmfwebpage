@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 const fallbackShows = [
   { date: "9.19.26", city: "Albuquerque", venue: "Bands of Enchantment 2026", ticketUrl: "https://www.bandsofenchantment.com/festival-rsvp" },
-  { date: "9.20.26", city: "Albuquerque", venue: "Bobfest - Launchpad" }, 
+  { date: "9.20.26", city: "Albuquerque", venue: "Bobfest - Launchpad", ticketUrl: "https://tickets.holdmyticket.com/tickets/465160" },
   { date: "11.04.26", city: "Albuquerque", venue: "Backstage - Revel", ticketUrl: "https://www.etix.com/ticket/p/38939260/harrison-gordon-albuquerque-backstage-at-revel?partner_id=100" },
 ];
 
@@ -29,8 +29,10 @@ type Show = (typeof fallbackShows)[number] & { ticketUrl?: string };
 const bandsintownArtists = ["15661749", "Thursday%20Marks%20Fall"];
 const suppliedTicketUrls: Record<string, string> = {
   "2026-09-19": "https://www.bandsofenchantment.com/festival-rsvp",
+  "2026-09-20": "https://tickets.holdmyticket.com/tickets/465160",
   "2026-11-04": "https://www.etix.com/ticket/p/38939260/harrison-gordon-albuquerque-backstage-at-revel?partner_id=100",
 };
+const livingCoverBandsTicketUrl = "https://tickets.holdmyticket.com/tickets/465160";
 
 function formatShowDate(value: string) {
   const date = value.slice(0, 10).split("-");
@@ -44,6 +46,12 @@ function getTicketUrl(offers: BandsintownOffer[] = [], ticketUrl?: string) {
   const primaryOffer = validOffers.find((offer) => /ticket|primary/i.test(offer.type ?? ""));
 
   return (primaryOffer ?? validOffers[0])?.url ?? (ticketUrl && !ticketUrl.includes("bandsintown.com") ? ticketUrl : undefined);
+}
+
+function getSuppliedTicketUrl(date: string, venue: string) {
+  if (venue.toLowerCase().includes("night of the living cover bands")) return livingCoverBandsTicketUrl;
+
+  return suppliedTicketUrls[date];
 }
 
 async function getShows(): Promise<Show[]> {
@@ -67,7 +75,7 @@ async function getShows(): Promise<Show[]> {
         date: formatShowDate(event.datetime ?? event.date ?? ""),
         city: event.venue?.city ?? "",
         venue: event.venue?.name ?? "",
-        ticketUrl: getTicketUrl(event.offers, event.ticket_url) ?? suppliedTicketUrls[(event.datetime ?? event.date ?? "").slice(0, 10)],
+        ticketUrl: getSuppliedTicketUrl((event.datetime ?? event.date ?? "").slice(0, 10), event.venue?.name ?? "") ?? getTicketUrl(event.offers, event.ticket_url),
       }));
 
     return shows.length > 0 ? shows : fallbackShows;
