@@ -1,23 +1,35 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function ClickSparks() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduceMotion.matches) return;
 
     const handleClick = (event: MouseEvent) => {
       const sparkCount = 8;
+      const noteIndex = pathname === "/album" || pathname === "/album/"
+        ? Math.floor(Math.random() * sparkCount)
+        : -1;
       const fragment = document.createDocumentFragment();
 
       for (let index = 0; index < sparkCount; index += 1) {
         const spark = document.createElement("span");
+        const isNote = index === noteIndex;
         const angle = (360 / sparkCount) * index + (Math.random() * 18 - 9);
         const distance = 70 + Math.random() * 120;
         const radians = (angle * Math.PI) / 180;
 
-        spark.className = "click-spark";
+        spark.className = isNote ? "click-spark click-spark-note" : "click-spark";
+        if (isNote) {
+          spark.textContent = Math.random() < 0.5 ? "♪" : "♫";
+          spark.style.setProperty("--spark-rotation", `${Math.random() * 50 - 25}deg`);
+          spark.style.setProperty("--spark-opacity", `${0.78 + Math.random() * 0.2}`);
+        }
         spark.style.left = `${event.clientX}px`;
         spark.style.top = `${event.clientY}px`;
         spark.style.setProperty("--spark-angle", `${angle}deg`);
@@ -25,7 +37,7 @@ export default function ClickSparks() {
         spark.style.setProperty("--spark-mid-y", `${Math.sin(radians) * distance * 0.45}px`);
         spark.style.setProperty("--spark-x", `${Math.cos(radians) * distance}px`);
         spark.style.setProperty("--spark-y", `${Math.sin(radians) * distance}px`);
-        spark.style.setProperty("--spark-size", `${3 + Math.random() * 2}px`);
+        spark.style.setProperty("--spark-size", `${isNote ? 11 + Math.random() * 4 : 3 + Math.random() * 2}px`);
         fragment.appendChild(spark);
 
         window.setTimeout(() => spark.remove(), 4100);
@@ -36,7 +48,7 @@ export default function ClickSparks() {
 
     window.addEventListener("click", handleClick);
     return () => window.removeEventListener("click", handleClick);
-  }, []);
+  }, [pathname]);
 
   return null;
 }

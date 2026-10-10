@@ -78,7 +78,7 @@ export default async function ShowsPage() {
     <main className="shows-page">
       <header className="shows-nav">
         <a className="nav-mark" href="/" aria-label="Thursday Marks Fall home"><Image src="/TMF%20logo.PNG" alt="TMF" width={42} height={18} /><span>®</span></a>
-        <nav aria-label="Page navigation"><a href="/album">Album</a><a href="/contact">Contact</a><a href="/merch">Merch</a></nav>
+        <nav aria-label="Page navigation"><a href="/album">Music</a><a href="/contact">Contact</a><a href="/merch">Merch</a></nav>
         <a href="/">Home <span className="ui-arrow" aria-hidden="true" /></a>
       </header>
       <section className="shows-page-content" aria-labelledby="shows-page-title">

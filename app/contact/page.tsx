@@ -5,7 +5,7 @@ export default function ContactPage() {
     <main className="contact-page">
       <header className="contact-nav">
         <a className="nav-mark" href="/" aria-label="Thursday Marks Fall home"><Image src="/TMF%20logo.PNG" alt="TMF" width={42} height={18} /><span>®</span></a>
-        <nav aria-label="Page navigation"><a href="/album">Album</a><a href="/shows">Shows</a><a href="/merch">Merch</a></nav>
+        <nav aria-label="Page navigation"><a href="/album">Music</a><a href="/shows">Shows</a><a href="/merch">Merch</a></nav>
         <a href="/">Home <span className="ui-arrow" aria-hidden="true" /></a>
       </header>
       <section className="contact-page-content" aria-labelledby="contact-page-title">

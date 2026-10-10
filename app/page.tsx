@@ -7,7 +7,7 @@ export default function Home() {
     <main className="landing-page">
       <header className="landing-nav">
         <a className="landing-mark" href="/" aria-label="TMF home"><Image src="/TMF%20logo.PNG" alt="TMF" width={42} height={18} /><span>®</span></a>
-        <nav aria-label="Main navigation"><a href="/album">Album</a><a href="/shows">Shows</a><a href="/contact">Contact</a><a href="/merch">Merch</a></nav>
+        <nav aria-label="Main navigation"><a href="/album">Music</a><a href="/shows">Shows</a><a href="/contact">Contact</a><a href="/merch">Merch</a></nav>
       </header>
       <section className="landing-hero" aria-labelledby="landing-caption">
         <div className="landing-logo-wrap">
